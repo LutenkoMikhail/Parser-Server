@@ -7,6 +7,17 @@ use Illuminate\Http\Request;
 
 class SourceController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,12 @@ class SourceController extends Controller
      */
     public function index()
     {
-        //
+        return view('sorry',
+            [
+                'nameClass' => __CLASS__,
+                'nameMethod' => __METHOD__
+            ]
+        );
     }
 
     /**
