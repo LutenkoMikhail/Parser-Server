@@ -6,10 +6,8 @@ use App\Server;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 
-class HomeController extends Controller
+class WelcomeController extends Controller
 {
-
-
     /**
      * Create a new controller instance.
      *
@@ -17,17 +15,16 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->maxPaginate = Config::get('constants.paginate.maxPaginateServers');
+        $this->maxPaginate = Config::get('constants.paginate.maxPaginate');
     }
 
     /**
-     * Show the application dashboard.
+     * Show welcome page.
      *
      */
     public function index()
     {
         $servers = Server::with('source:id,name')->orderBy('provider')->paginate($this->maxPaginate);
-        return view('home',['servers'=>$servers]);
+        return view('show',['servers'=>$servers]);
     }
 }

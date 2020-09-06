@@ -24,6 +24,7 @@ class ServerCreateUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'provider' => 'required|min:3|max:255',
             'brand' => 'required|min:5|max:255',
             'location' => 'required|min:5|max:255',
             'cpu' => 'required|min:5|max:255',

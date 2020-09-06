@@ -51,6 +51,7 @@ class ServerController extends Controller
     {
         $status = 'Error creating new record !';
         $server = new Server();
+        $server->provider = $request->provider;
         $server->brand = $request->brand;
         $server->location = $request->location;
         $server->cpu = $request->cpu;
@@ -101,6 +102,7 @@ class ServerController extends Controller
     public function update(ServerCreateUpdateRequest $request, Server $server)
     {
         $status = 'Error saving  record !';
+        $server->provider = $request->provider;
         $server->brand = $request->brand;
         $server->location = $request->location;
         $server->cpu = $request->cpu;

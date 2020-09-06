@@ -50,6 +50,16 @@
                                 </li>
                             @endif
                         @else
+                            <a class="navbar-brand" href="{{route('source.index')}}">
+                                Source
+                            </a>
+                            <a class="navbar-brand" href="{{route('home')}}">
+                                Servers
+                            </a>
+                            <a class="navbar-brand" href="{{route('home')}}">
+                                Reset DB Servers
+                            </a>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

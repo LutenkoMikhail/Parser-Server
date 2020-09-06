@@ -4,12 +4,12 @@
 namespace App\Services;
 
 
-class LoadPage
+class LoadSource
 {
     private $urlPage;
 
     /**
-     * LoadPage constructor.
+     * LoadSource constructor.
      * @param $urlPage
      */
     public function __construct($urlPage)
@@ -18,7 +18,11 @@ class LoadPage
 
     }
 
-    public function loadingPage()
+    /**
+     * loadingSource load source data.
+     * return сontents or False
+     */
+    public function loadingSource()
     {
         $output = curl_init();
         curl_setopt($output, CURLOPT_URL, $this->urlPage);

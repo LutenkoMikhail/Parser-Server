@@ -17,7 +17,7 @@ class CreateSourcesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();;
 //            $table->string('parser');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

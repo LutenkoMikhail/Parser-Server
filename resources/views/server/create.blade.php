@@ -22,7 +22,21 @@
                                 <form action="{{route ('server.store')}}" method="post"
                                       enctype="multipart/form-data">
                                     @csrf
-
+                                    <div class="form-group row">
+                                        <label for="provider"
+                                               class="col-md-4 col-form-label text-md-right">{{ __('provider') }}</label>
+                                        <div class="col-md-6">
+                                            <input id="provider" type="text"
+                                                   class="form-control @error('provider') is-invalid @enderror"
+                                                   name="provider" value="{{ old('provider') }}" maxlength="255" required
+                                                   autocomplete="title" autofocus>
+                                            @error('provider')
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                     <div class="form-group row">
                                         <label for="brand"
                                                class="col-md-4 col-form-label text-md-right">{{ __('brand') }}</label>

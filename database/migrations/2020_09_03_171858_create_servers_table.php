@@ -15,12 +15,13 @@ class CreateServersTable extends Migration
     {
         Schema::create('servers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('brand');
-            $table->string('location');
-            $table->string('cpu');
-            $table->string('drive');
-            $table->float('price')->unsigned();;
-            $table->unsignedBigInteger('source_id')->nullable();;
+            $table->string('provider')->nullable();
+            $table->string('brand')->nullable();
+            $table->string('location')->nullable();
+            $table->string('cpu')->nullable();
+            $table->string('drive')->nullable();
+            $table->float('price')->unsigned()->nullable();
+            $table->unsignedBigInteger('source_id')->nullable();
             $table->timestamps();
             $table->foreign('source_id')
                 ->references('id')

@@ -15,7 +15,7 @@
                         @endif
                         <div class="row justify-content-center">
                             <div class="col-md-12">
-                                <h1 class="text-center">{{('Provider-'.$server->source->name)}}  </h1>
+                                <h1 class="text-center">{{('Provider-'.$server->provider)}}  </h1>
                                 <h3 class="text-center"> {{  ('Brand- '.$server->brand) }} </h3>
                                 <h3 class="text-center"> {{ ('Location-'.$server->location) }} </h3>
                                 <h3 class="text-center"> {{ ('CPU-'.$server->cpu) }} </h3>

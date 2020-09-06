@@ -1,6 +1,7 @@
 <?php
 return [
     'paginate' => [
-        'maxPaginate' => 7,
+        'maxPaginateServers' => 2,
+        'maxPaginateSources' => 2,
     ]
 ];

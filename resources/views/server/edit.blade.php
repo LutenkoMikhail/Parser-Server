@@ -24,13 +24,29 @@
                                     @csrf
 
                                     <div class="form-group row">
+                                        <label for="provider"
+                                               class="col-md-4 col-form-label text-md-right">{{ __('provider') }}</label>
+                                        <div class="col-md-6">
+                                            <input id="provider" type="text"
+                                                   class="form-control @error('provider') is-invalid @enderror"
+                                                   name="provider" value="{{ $server->provider }}" maxlength="255" required
+                                                   autocomplete="provider" autofocus>
+                                            @error('provider')
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
                                         <label for="brand"
                                                class="col-md-4 col-form-label text-md-right">{{ __('brand') }}</label>
                                         <div class="col-md-6">
                                             <input id="brand" type="text"
                                                    class="form-control @error('brand') is-invalid @enderror"
                                                    name="brand" value="{{ $server->brand }}" maxlength="255" required
-                                                   autocomplete="title" autofocus>
+                                                   autocomplete="brand" autofocus>
                                             @error('brand')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

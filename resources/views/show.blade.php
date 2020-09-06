@@ -1,11 +1,10 @@
-@extends('layouts.app')
+@extends('welcome')
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Dashboard</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -13,9 +12,8 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <p class="text-center">Servers catalog!</p>
+                            <p class="text-center">Servers catalog!</p>
                         @if(count($servers))
-
                             <table class="table table-striped mt-3">
                                 <thead>
                                 <tr>
@@ -25,7 +23,6 @@
                                     <th scope="col">CPU</th>
                                     <th scope="col">Drive</th>
                                     <th scope="col">Price</th>
-                                    <th scope="col">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -37,23 +34,7 @@
                                         <th>{{$server->cpu}}</th>
                                         <th>{{$server->drive}}</th>
                                         <th>$ {{$server->price}}</th>
-                                        <td>
-                                            <div class="btn-group">
-                                                <a href="{{ route('server.create') }}"
-                                                   class="btn btn-success">
-                                                    <i class="fa fa-plus"></i></a>
 
-                                                <a href="{{ route('server.show',['server'=>$server->id]) }}"
-                                                   class="btn btn-primary">
-                                                    <i class="fa fa-eye"></i></a>
-                                                <a href="{{ route('server.edit',['server'=>$server->id]) }}"
-                                                   class="btn btn-warning">
-                                                    <i class="fa fa-pencil"></i></a>
-                                                <a href="{{ route('server.destroy',['server'=>$server->id]) }}"
-                                                   class="btn btn-danger">
-                                                    <i class="fa fa-trash-o"></i></a>
-                                            </div>
-                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -61,9 +42,9 @@
 
                             {{$servers->links()}}
                         @else
-                            <h1>
+                                <h1>
                                 <p class="text-center">No data.</p>
-                            </h1>
+                          </h1>
                         @endif
 
                     </div>

@@ -13,45 +13,40 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <p class="text-center">Servers catalog!</p>
-                        @if(count($servers))
+                        <p class="text-center">Sources catalog!</p>
+                        @if(count($sources))
 
                             <table class="table table-striped mt-3">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Provider</th>
-                                    <th scope="col">Brand</th>
-                                    <th scope="col">Location</th>
-                                    <th scope="col">CPU</th>
-                                    <th scope="col">Drive</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">Name provider</th>
+                                    <th scope="col">Url</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($servers as $server)
+                                @foreach($sources as $source)
                                     <tr>
-                                        <th>{{$server->provider}}</th>
-                                        <th>{{$server->brand}}</th>
-                                        <th>{{$server->location}}</th>
-                                        <th>{{$server->cpu}}</th>
-                                        <th>{{$server->drive}}</th>
-                                        <th>$ {{$server->price}}</th>
+                                        <th>{{$source->name}}</th>
+                                        <th>{{$source->url}}</th>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="{{ route('server.create') }}"
+                                                <a href="{{ route('source.create') }}"
                                                    class="btn btn-success">
                                                     <i class="fa fa-plus"></i></a>
 
-                                                <a href="{{ route('server.show',['server'=>$server->id]) }}"
+                                                <a href="{{ route('source.show',['source'=>$source->id]) }}"
                                                    class="btn btn-primary">
                                                     <i class="fa fa-eye"></i></a>
-                                                <a href="{{ route('server.edit',['server'=>$server->id]) }}"
+                                                <a href="{{ route('source.edit',['source'=>$source->id]) }}"
                                                    class="btn btn-warning">
                                                     <i class="fa fa-pencil"></i></a>
-                                                <a href="{{ route('server.destroy',['server'=>$server->id]) }}"
+                                                <a href="{{ route('source.destroy',['source'=>$source->id]) }}"
                                                    class="btn btn-danger">
                                                     <i class="fa fa-trash-o"></i></a>
+                                                <a href="{{ route('source.parsing',['source'=>$source->id]) }}"
+                                                   class="btn btn-info">
+                                                    <i class="fa fa-download"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -59,7 +54,7 @@
                                 </tbody>
                             </table>
 
-                            {{$servers->links()}}
+                            {{$sources->links()}}
                         @else
                             <h1>
                                 <p class="text-center">No data.</p>
