@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ServerCreateUpdateRequest;
 use App\Server;
 use App\Source;
-use Illuminate\Http\Request;
 
 class ServerController extends Controller
 {
@@ -36,6 +35,10 @@ class ServerController extends Controller
     public function create()
     {
         $sources = Source::all();
+        if (!count($sources)) {
+            $status = 'Source created !';
+            return redirect()->route('source.index')->with('status', $status);
+        }
         return view('server.create',
             [
                 'sources' => $sources

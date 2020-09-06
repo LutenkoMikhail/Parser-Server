@@ -28,7 +28,8 @@
                                         <div class="col-md-6">
                                             <input id="provider" type="text"
                                                    class="form-control @error('provider') is-invalid @enderror"
-                                                   name="provider" value="{{ old('provider') }}" maxlength="255" required
+                                                   name="provider" value="{{ old('provider') }}" maxlength="255"
+                                                   required
                                                    autocomplete="title" autofocus>
                                             @error('provider')
                                             <span class="invalid-feedback" role="alert">
@@ -137,7 +138,7 @@
                                     </span>
                                     @enderror
                                     <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Create.</button>
+                                        <button type="submit" class="btn btn-primary">Create.</button>
                                     </div>
                             </div>
 

@@ -10,6 +10,7 @@ class Source extends Model
         'name', 'url'
     ];
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
     public function servers()
     {
         return $this->hasMany('App\Server');

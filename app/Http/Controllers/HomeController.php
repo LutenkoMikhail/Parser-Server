@@ -28,6 +28,6 @@ class HomeController extends Controller
     public function index()
     {
         $servers = Server::with('source:id,name')->orderBy('provider')->paginate($this->maxPaginate);
-        return view('home',['servers'=>$servers]);
+        return view('home', ['servers' => $servers]);
     }
 }

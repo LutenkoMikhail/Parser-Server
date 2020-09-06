@@ -11,9 +11,7 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Auth::routes();
 
@@ -36,15 +34,3 @@ Route::post('/home/source/store', 'SourceController@store')->name('source.store'
 Route::get('/home/sources/edit/{source}', 'SourceController@edit')->name('source.edit');
 Route::post('/home/source/{source}', 'SourceController@update')->name('source.update');
 
-
-//Route::get('profile', function () {
-//    // Only authenticated users may enter...
-//})->middleware('auth');
-
-
-//Route::get('author/create',  'AuthorController@create')->name('author.create');
-//Route::post('author/store', 'AuthorController@store')->name('author.store');
-//
-//
-//Route::get('author/{author}/edit', 'AuthorController@edit')->name('author.edit');
-//Route::post('author/{author}', 'AuthorController@update')->name('author.update');

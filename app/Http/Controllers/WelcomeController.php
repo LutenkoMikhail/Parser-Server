@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Server;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 
 class WelcomeController extends Controller
@@ -25,6 +24,6 @@ class WelcomeController extends Controller
     public function index()
     {
         $servers = Server::with('source:id,name')->orderBy('provider')->paginate($this->maxPaginate);
-        return view('show',['servers'=>$servers]);
+        return view('show', ['servers' => $servers]);
     }
 }

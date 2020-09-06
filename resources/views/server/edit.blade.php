@@ -29,7 +29,8 @@
                                         <div class="col-md-6">
                                             <input id="provider" type="text"
                                                    class="form-control @error('provider') is-invalid @enderror"
-                                                   name="provider" value="{{ $server->provider }}" maxlength="255" required
+                                                   name="provider" value="{{ $server->provider }}" maxlength="255"
+                                                   required
                                                    autocomplete="provider" autofocus>
                                             @error('provider')
                                             <span class="invalid-feedback" role="alert">

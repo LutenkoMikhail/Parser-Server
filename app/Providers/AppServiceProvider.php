@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Server;
+use App\Source;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +26,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if (Schema::hasTable('servers')) {
+            $totalServers = Server::get()->count();
+            view()->share('totalServers', $totalServers);
+        }
+        if (Schema::hasTable('sources')) {
+            $totalSources = Source::get()->count();
+            view()->share('totalSources', $totalSources);
+        }
     }
 }

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SourceCreateUpdateRequest;
+use App\Server;
 use App\Services\LoadSource;
 use App\Services\ParserINXY;
 use App\Services\ParserSource;
 use App\Source;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 
 class SourceController extends Controller
@@ -35,24 +36,33 @@ class SourceController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Parsing and save data.
      *
      * @param \App\Source $source
      */
     public function parsing(Source $source)
     {
+        $status = 'Error parsing data !';
+
         $parserInxy = new ParserINXY();
-
         $sourceData = new LoadSource($source->url);
+        $sourceParser = new ParserSource($parserInxy, $sourceData->loadingSource());
+        $serverParsing = $sourceParser->parsingData();
 
-        $sourceParser=new ParserSource( $parserInxy,$sourceData->loadingSource());
-        ddd($sourceParser->parsingData());
-        return view('sorry',
-            [
-                'nameClass' => __CLASS__,
-                'nameMethod' => __METHOD__
-            ]
-        );
+        if (count($serverParsing)) {
+            foreach ($serverParsing as $item) {
+                $item['source_id'] = $source->id;
+                $item['created_at'] = new \dateTime;
+                $item['updated_at'] = new \dateTime;
+                $serversArray[] = $item;
+            }
+
+            Server::where('source_id', '=', $source->id)->delete();
+            Server::insert($serversArray);
+
+            $status = 'Data converted and written !  ' . count($serverParsing) . ' elements !';
+        }
+        return redirect()->back()->with('status', $status);
     }
 
     /**
@@ -61,12 +71,7 @@ class SourceController extends Controller
      */
     public function create()
     {
-        return view('sorry',
-            [
-                'nameClass' => __CLASS__,
-                'nameMethod' => __METHOD__
-            ]
-        );
+        return view('source.create');
     }
 
     /**
@@ -74,14 +79,18 @@ class SourceController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      */
-    public function store(Request $request)
+    public function store(SourceCreateUpdateRequest $request)
     {
-        return view('sorry',
-            [
-                'nameClass' => __CLASS__,
-                'nameMethod' => __METHOD__
-            ]
-        );
+        $status = 'Error creating new record !';
+        $source = new Source();
+        $source->name = $request->name;
+        $source->url = $request->url;
+
+        if ($source->save()) {
+            $status = 'New source created !';
+            return redirect()->route('source.index')->with('status', $status);
+        }
+        return redirect()->back()->with('status', $status);
     }
 
     /**
@@ -91,12 +100,9 @@ class SourceController extends Controller
      */
     public function show(Source $source)
     {
-        return view('sorry',
-            [
-                'nameClass' => __CLASS__,
-                'nameMethod' => __METHOD__
-            ]
-        );
+        return view('source.show_source', [
+            'source' => $source
+        ]);
     }
 
     /**
@@ -106,12 +112,10 @@ class SourceController extends Controller
      */
     public function edit(Source $source)
     {
-        return view('sorry',
+        return view('source.edit',
             [
-                'nameClass' => __CLASS__,
-                'nameMethod' => __METHOD__
-            ]
-        );
+                'source' => $source,
+            ]);
     }
 
     /**
@@ -120,14 +124,16 @@ class SourceController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \App\Source $source
      */
-    public function update(Request $request, Source $source)
+    public function update(SourceCreateUpdateRequest $request, Source $source)
     {
-        return view('sorry',
-            [
-                'nameClass' => __CLASS__,
-                'nameMethod' => __METHOD__
-            ]
-        );
+        $status = 'Error saving  record !';
+        $source->name = $request->name;
+        $source->url = $request->url;
+        if ($source->save()) {
+            $status = 'Source updated !';
+            return redirect()->route('source.index')->with('status', $status);
+        }
+        return redirect()->back()->with('status', $status);
     }
 
     /**
