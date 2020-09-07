@@ -25,7 +25,8 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a href="{{ url()->previous() }}"
-                                       class="btn btn-sm btn-outline-dark">{{ __('Back') }}</a>
+                                       class="btn btn-success">
+                                        <i class="fa fa-hand-o-left"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -35,3 +36,19 @@
         </div>
     </div>
 @endsection
+
+<div class="btn-group">
+    <a href="{{ route('server.create') }}"
+       class="btn btn-success">
+        <i class="fa fa-plus"></i></a>
+
+    <a href="{{ route('server.show',['server'=>$server->id]) }}"
+       class="btn btn-primary">
+        <i class="fa fa-eye"></i></a>
+    <a href="{{ route('server.edit',['server'=>$server->id]) }}"
+       class="btn btn-warning">
+        <i class="fa fa-pencil"></i></a>
+    <a href="{{ route('server.destroy',['server'=>$server->id]) }}"
+       class="btn btn-danger">
+        <i class="fa fa-trash-o"></i></a>
+</div>

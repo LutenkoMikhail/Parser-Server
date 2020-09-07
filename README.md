@@ -2,8 +2,9 @@
 
 Выполнить команду : 
 
-composer update;
+composer install (update);
 npm install (при необходимости);
+php artisan key:generate
 php artisan storage:link(при необходимости);
 php artisan optimize:clear(при необходимости);
 Переименовать файл .env.example в файл .env и настроить подключение к базе данных и пр;

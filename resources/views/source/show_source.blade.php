@@ -21,7 +21,8 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a href="{{ url()->previous() }}"
-                                       class="btn btn-sm btn-outline-dark">{{ __('Back') }}</a>
+                                       class="btn btn-success">
+                                        <i class="fa fa-hand-o-left"></i></a>
                                 </div>
                             </div>
                         </div>
